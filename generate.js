@@ -1,7 +1,6 @@
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const Decimal = require("decimal.js");
-var test = require("unit.js");
 
 function generateInvoice(
 	company,
