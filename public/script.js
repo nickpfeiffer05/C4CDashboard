@@ -9,9 +9,16 @@ document.querySelector(".download-btn").addEventListener("click", () => {
 	let date = document.querySelector(".date-input").value;
 	let invoiceNum = document.querySelector(".invoice-input").value;
 
+	if (po != "" && po[0] == "#") {
+		po = po.substring(1);
+	}
+	po = po.trim();
+
 	if (invoiceNum != "" && invoiceNum[0] == "#") {
 		invoiceNum = invoiceNum.substring(1);
 	}
+	invoiceNum = invoiceNum.trim();
+
 	let bullets = document
 		.querySelector(".bullets-input")
 		.value.trim()
