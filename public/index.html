@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="background">
+			<div class="form">
+				<div class="left">
+					<div class="client-section section">
+						<p>Company Name</p>
+						<input
+							class="company-input reg-input"
+							placeholder="The company's name"
+						/>
+					</div>
+					<div class="name-section section">
+						<p>Client Name</p>
+						<input
+							class="name-input reg-input"
+							placeholder="The client's name"
+						/>
+					</div>
+					<div class="location-section section">
+						<p>Location</p>
+						<input
+							class="loc-input reg-input"
+							placeholder="The location"
+						/>
+					</div>
+					<div class="apartment-section section">
+						<div class="apt-container">
+							<p>Apartment</p>
+							<input
+								class="apt-input reg-input"
+								placeholder="Apartment number"
+							/>
+						</div>
+						<div class="po-container">
+							<span>P.O.</span>
+							<div class="optional-container">
+								<span class="optional">(optional)</span>
+							</div>
+							<input
+								class="po-input reg-input"
+								placeholder="P.O. Number"
+							/>
+						</div>
+					</div>
+					<div class="date-section section">
+						<p>Date</p>
+						<input
+							class="date-input reg-input"
+							placeholder="Date of invoice"
+						/>
+					</div>
+					<div class="invoice-section section">
+						<p>Invoice</p>
+						<input
+							class="invoice-input reg-input"
+							placeholder="Invoice number"
+						/>
+					</div>
+					<div class="subtotal-section section">
+						<p>Subtotal</p>
+						<div class="inner-subtotal">
+							<input
+								class="subtotal-input reg-input"
+								placeholder="Subtotal price"
+							/>
+							<div class="tax-container">
+								<div class="tax-8625">
+									<span>8.625%</span>
+								</div>
+								<div class="tax-8875">
+									<span>8.875%</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<div class="bullets-section section">
+						<p>Invoice</p>
+						<textarea
+							class="bullets-input reg-input"
+							placeholder="Invoice bullet points"
+						></textarea>
+					</div>
+					<button class="download-btn">Download</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- <script src="./generate.js"></script> -->
+		<script src="./script.js"></script>
+	</body>
+</html>
