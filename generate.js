@@ -18,9 +18,15 @@ function generateInvoice(
 	let tax = calculateTax(subtotal, taxRate);
 	let total = new Decimal(subtotal)
 		.plus(new Decimal(tax))
-		.toDecimalPlaces(2)
+		// .toDecimalPlaces(2)
 		.toNumber()
-		.toLocaleString();
+		.toFixed(2);
+	// .toLocaleString();
+
+	tax = addCommas(tax);
+	subtotal = Number(subtotal).toFixed(2);
+	subtotal = addCommas(subtotal);
+	total = addCommas(total);
 
 	let fullClient = "Client:  " + company;
 	let fullName = "             " + name;
@@ -153,21 +159,65 @@ function generateInvoice(
 
 	doc.y = startY + rectangleHeight + 40;
 
-	const subtotalTemplate = "Subtotal:         $";
-	const taxTemplate = "Tax " + taxRate + "%:   $";
-	const totalTemplate = "Total:              $";
-	let allPrices =
-		subtotalTemplate +
-		Number(subtotal).toLocaleString() +
-		"\n" +
-		taxTemplate +
-		Number(tax).toLocaleString() +
-		"\n" +
-		totalTemplate +
-		total;
+	const subtotalTemplate = "Subtotal:";
+	const taxTemplate = "Tax " + taxRate + "%:";
+	const totalTemplate = "Total:";
+	// let allPrices =
+	// 	subtotalTemplate +
+	// 	Number(subtotal).toLocaleString() +
+	// 	"\n" +
+	// 	taxTemplate +
+	// 	Number(tax).toLocaleString() +
+	// 	"\n" +
+	// 	totalTemplate +
+	// 	total;
+
+	let longestLength = Math.max(subtotal.length, tax.length, total.length);
+	let longestStr = "";
+	if (longestLength == subtotal.length) longestStr = subtotal;
+	if (longestLength == tax.length) longestStr = tax;
+	if (longestLength == total.length) longestStr = total;
+
+	// subtotal = addSpaces(subtotal, longestLength);
+	// tax = addSpaces(tax, longestLength);
+	// total = addSpaces(total, longestLength);
 
 	doc.x = RIGHT_SIDE;
-	doc.text(allPrices);
+	// doc.text(allPrices);
+	let prevY = doc.y;
+	doc.text(subtotalTemplate);
+
+	let newX =
+		RIGHT_SIDE +
+		70 +
+		(10 + doc.widthOfString(longestStr)) -
+		doc.widthOfString(subtotal);
+	doc.text("$", RIGHT_SIDE + 70, prevY);
+	doc.text(subtotal, newX, prevY);
+
+	doc.x = RIGHT_SIDE;
+	prevY = doc.y;
+	doc.text(taxTemplate);
+
+	newX =
+		RIGHT_SIDE +
+		70 +
+		(10 + doc.widthOfString(longestStr)) -
+		doc.widthOfString(tax);
+	doc.text("$", RIGHT_SIDE + 70, prevY);
+	doc.text(tax, newX, prevY);
+
+	doc.x = RIGHT_SIDE;
+	prevY = doc.y;
+	doc.text(totalTemplate);
+	newX =
+		RIGHT_SIDE +
+		70 +
+		(10 + doc.widthOfString(longestStr)) -
+		doc.widthOfString(total);
+	doc.text("$", RIGHT_SIDE + 70, prevY);
+	doc.text(total, newX, prevY);
+
 	doc.x = MARGIN;
 
 	doc.moveDown(2);
@@ -191,11 +241,31 @@ function calcLineGap(fontSize, mult) {
 function calculateTax(amount, taxRate) {
 	const decimalAmount = new Decimal(amount);
 	const decimalTaxRate = new Decimal(taxRate);
-	const tax = decimalAmount
-		.times(decimalTaxRate)
-		.dividedBy(100)
-		.toDecimalPlaces(2);
-	return tax.toNumber();
+	const tax = decimalAmount.times(decimalTaxRate).dividedBy(100);
+	return tax.toNumber().toFixed(2);
+}
+
+function addCommas(number) {
+	// Convert number to string
+	let numStr = number.toString();
+
+	// Split integer and decimal parts
+	let parts = numStr.split(".");
+	let integerPart = parts[0];
+	let decimalPart = parts[1] ? "." + parts[1] : "";
+
+	// Add commas to integer part
+	integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+	// Join integer and decimal parts
+	return integerPart + decimalPart;
+}
+
+function addSpaces(s, max) {
+	while (s.length < max) {
+		s = " " + s;
+	}
+	return s;
 }
 
 module.exports = { generateInvoice, calcLineGap, calculateTax };
