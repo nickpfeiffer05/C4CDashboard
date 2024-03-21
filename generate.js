@@ -23,10 +23,10 @@ function generateInvoice(
 		.toLocaleString();
 
 	let fullClient = "Client:  " + company;
-	let fullName = "Name:  " + name;
+	let fullName = "             " + name;
 	let fullLoc = "Loc:     " + loc;
 	let fullApt = "Apt.     " + apt;
-	let fullPo = "P.O.     #" + po;
+	let fullPo = "P.O.#   " + po;
 	let fullDate = "Date: " + date;
 	let fullInvoice = "Invoice #" + invoiceNum;
 
@@ -42,9 +42,9 @@ function generateInvoice(
 	const RIGHT_SIDE = 400;
 
 	const doc = new PDFDocument({ font: "Times-Roman", margin: MARGIN });
-	// doc.pipe(fs.createWriteStream("./public/invoice.pdf"));
-	// doc.pipe(fs.createWriteStream("invoice.pdf"));
-	const writeStream = fs.createWriteStream("./public/invoice.pdf"); // Write stream to the file
+	const writeStream = fs.createWriteStream(
+		"./public/Invoice #" + invoiceNum + ".pdf"
+	); // Write stream to the file
 
 	doc.pipe(writeStream);
 

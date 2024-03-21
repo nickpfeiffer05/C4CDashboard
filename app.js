@@ -39,7 +39,7 @@ app.post("/generate-invoice", (req, res) => {
 		subtotal,
 		taxRate,
 		() => {
-			res.sendFile(__dirname + "/public/invoice.pdf");
+			res.sendFile(__dirname + "/public/Invoice #" + invoiceNum + ".pdf");
 		}
 	);
 	// res.sendFile(__dirname + "/public/invoice.pdf");
