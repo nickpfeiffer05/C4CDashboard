@@ -6,3 +6,4 @@
 - Navigate into the local repository
 - Install dependencies: `npm install`
 - Run the application: `node server.js`
+    - View application on localhost:3000
