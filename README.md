@@ -11,7 +11,7 @@
 
 
 ## Overview of the Application 
-This is application lets users create a record of partner organizations, for those who have the correct authorization key. This program lets users enter a Partner organization name, a partner's company logo, a description of the partner, and an indicator of whether or not this company is in active partnership with C4C. 
+This application lets users create a record of partner organizations, for those who have the correct authorization key. The program lets users enter a Partner organization name, a partner's company logo, a description of the partner, and an indicator of whether or not this company is in active partnership with C4C. 
 
 The user can then search for partners by the name of the partner, where they can then see and edit the partner's information, like their name, activity status, description, and company logo. After searching, the user can also delete the partner from the records or return back to the adding partner menu. 
 
