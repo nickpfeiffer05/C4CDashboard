@@ -31,12 +31,18 @@ One important idea that I learned was the value in creating reusable code. Much 
 
 Another aspect that I learned from this project was persisting data using JSON. As I mentioned earlier, I have very recently had several opportunities (including this one) to learn JSON for the first time, and I think this understanding is very valuable to have. 
 
+
+## What I would do Differently
 One thing that I would do differently is the authentication. I ran out of time for this implementation, the authentication as of now is actually very insecure. The current method of authentication is purely client side, and therefore not actually secure at all. For example, any user could simply paste in the main page URL and bypass the authentication entirely. If I had more time, I would have prevented this and also tried to learn more about sessions and allowing users to stay logged in for a certain amount of time.
 
 Another thing that I would have implemented is a full display of every partner that C4C has. Currently, you have to search for specific partners, which can be a little tedious if you don't know their names already. I simply did not have time to design a new search page that could store multiple partner's information and display it all at once. 
 
 Also one thing that I just rememberd (as I am running out of time) is that my application is not fully responsive. I actually designed the frontend so it can easily be made responsive (the card in the center design), however, I realize now that I forgot to implement that. Currently, when the width of the window shrinks, the content in the center also shrinks, when what should happen is the background should just get smaller and smaller. I don't think this would be that difficult to implement, though.
 
+
+## Issues
 The main issue that I ran into was figuring out how I wanted the application to flow, and the different pages and links that all connected to each other. I started off by just diving into the coding, and after a certain point, I realized that I didn't really have a good plan for how to move forward. So, I took a step back, and focused on drawing out how I wanted my application to look and how I wanted it to be used. I focused on user experience and actually fully planned out how I wanted the application to flow between the differnet pages (auth, add, search, and search results). I realize now that I should have done this from the beginning, and I now know the value in extensive planning. 
 
+
+## Bonus Features
 I implemented all the bonus features listed (also listed above) because I thought they were very doable and would really elevate the quality of this application. I didn't want to create a purely frontend program, and I really wanted to test my ability with creating a backend that can handle a variety of requests and data parsing, and I think it created a much more interesting application as a result. 
