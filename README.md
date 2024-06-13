@@ -1,4 +1,4 @@
-### C4C Dashboard
+# C4C Dashboard
 
 ## Instructions for Running
 - Download Node.js if not already installed: https://nodejs.org/en
