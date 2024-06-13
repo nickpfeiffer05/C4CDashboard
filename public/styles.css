@@ -3,7 +3,6 @@ body {
 	height: 100vh;
 	margin: 0;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	/* font-family: "PT Sans", sans-serif; */
 }
 
 .background {
@@ -15,57 +14,62 @@ body {
 	background-color: #f7f8fa;
 }
 
+.main {
+	width: 40%;
+	height: 80%;
+}
+
+.header {
+	display: flex;
+}
+
+.header button {
+	flex: 1;
+	border: none;
+	height: 40px;
+}
+
+.search-partners-button {
+	background-color: #97bad5;
+	border-top-right-radius: 5px;
+	cursor: pointer;
+	font-family: "PT Sans";
+	font-size: 17px;
+}
+
+.add-partner-button {
+	background-color: #749ebf;
+	border-top-left-radius: 5px;
+	cursor: pointer;
+	font-family: "PT Sans";
+	font-size: 17px;
+}
+
 .form {
+	width: 100%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	background-color: white;
-	width: 80%;
-	/* height: 70%; */
-	/* border: 2px solid black; */
+	margin: 0;
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
 	display: flex;
-	flex-direction: row;
+	flex-direction: col;
 	gap: 30px;
 
-	/* box-shadow: 1px 1px; */
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
 		0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
 		0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
-	border-radius: 5px;
-}
-
-.left {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	flex-grow: 1.75;
-	flex-basis: 0;
-	/* flex-shrink: 0.7; */
-}
-
-.right {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1;
-	/* flex-shrink: 0.3; */
-}
-
-.right button {
-	margin-top: auto;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-sizing: border-box;
 }
 
 .section p {
 	margin: 0;
 	margin-bottom: 3px;
-	font-size: 15px;
-}
-
-.po-container span {
-	display: inline-block;
-	margin: 0;
-	margin-bottom: 2px;
 	font-size: 15px;
 }
 
@@ -93,25 +97,23 @@ body {
 	border: 1px solid rgb(97, 131, 161);
 }
 
-.bullets-section {
+.partner-description {
 	height: 100%;
 	margin-bottom: 20px;
 	display: flex;
 	flex-direction: column;
 }
 
-.bullets-section textarea {
-	padding: 10px 12px;
+.partner-description textarea {
 	margin: 0px;
 	font-family: "Inter";
 	flex: 1;
-	line-height: 200%;
 	padding-top: 5px;
-	font-size: 19px;
+	font-size: 15px;
 	resize: none;
 }
 
-.download-btn {
+.submit-button {
 	padding: 5px;
 	margin: none;
 	font-family: "PT Sans";
@@ -124,78 +126,93 @@ body {
 	cursor: pointer;
 	margin-top: 10px;
 	margin-left: auto;
-
 	font-size: 20px;
 }
 
-.inner-subtotal {
+.hidden {
+	display: none;
+}
+
+.upload-label {
+	background-color: white;
+	color: rgb(50, 50, 50);
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.upload-label:hover {
+	background-color: #e6e6e6;
+}
+
+.checkbox-text {
+	font-family: "Inter";
+	font-size: 18px;
+}
+
+.add-partner-form {
 	display: flex;
 }
 
-.subtotal-input {
-	width: 80%;
-	/* flex-grow: 1; */
+.search-partners-form {
+	display: none;
 }
 
-.tax-container {
+.upload-img {
+	width: 30px;
+	height: 30px;
+	position: relative;
+	top: 9px;
+	margin-left: -3px;
+	margin-top: -20px;
+}
+
+.activity-container {
 	width: 50%;
 	display: flex;
-	margin-left: 20px;
 	justify-content: flex-end;
 	cursor: pointer;
-	/* flex-grow: 1; */
+	margin-left: 0;
+	display: flex;
+	justify-content: flex-start;
 }
 
-.tax-container div {
+.activity-container div {
 	width: 80px;
 	height: 100%;
 	border: 2px solid black;
 	border: none;
 	text-align: center;
-	/* background-color: rgb(224, 224, 224); */
 	border-radius: 1px;
-	border: 1px solid #1496bd;
-	box-sizing: border-box;
+	border: 1px solid #cd6767;
 }
 
-.tax-container div span {
+.activity-container div span {
 	line-height: 200%;
 	font-family: "Verdana";
 	font-size: 17px;
 	user-select: none;
 }
 
-.tax-8625 {
-	background-color: #1496bd;
-	color: white;
-}
-.tax-8875 {
-	color: #1496bd;
-	background-color: white;
+.active {
+	background-color: #cd6767;
 }
 
-.apartment-section {
-	display: flex;
-	/* width: 100%; */
-	gap: 10px;
-}
-
-.po-container {
-	flex-grow: 1;
-	/* flex-basis: 1; */
-}
-
-.apt-container {
-	flex-grow: 10;
-	/* flex-basis: 10; */
-}
-
-.optional-container {
-	display: inline-block;
-	margin-left: -3px;
-}
-
-.optional {
-	margin-left: 50px;
-	color: rgb(165, 165, 165);
+.search-button {
+	padding: 5px;
+	margin: none;
+	font-family: "PT Sans";
+	width: 100%;
+	height: 40px;
+	font-size: 25px;
+	background-color: #57ac4f;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+	margin-left: auto;
+	font-size: 20px;
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>C4C</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="background">
+			<div class="main">
+				<div class="header">
+					<button class="add-partner-button">Add Partner</button>
+					<button class="search-partners-button">
+						Search Partners
+					</button>
+				</div>
+				<div class="form add-partner-form">
+					<div class="partner-name section">
+						<p>Partner Name</p>
+						<input
+							class="partner-input reg-input"
+							placeholder="The partner's name"
+						/>
+					</div>
+					<div class="upload-section">
+						<input
+							type="file"
+							id="files"
+							class="hidden files"
+							accept="image/jpeg, image/png, image/svg"
+						/>
+						<label for="files" class="upload-label">
+							<img src="./upload_symbol.png" class="upload-img" />
+							Partner Logo
+						</label>
+					</div>
+					<div class="activity-container">
+						<div class="active">
+							<span>Active</span>
+						</div>
+						<div class="inactive">
+							<span>Inactive</span>
+						</div>
+					</div>
+
+					<div class="partner-description section">
+						<p>Partner Description</p>
+						<textarea
+							class="desc-input reg-input"
+							placeholder="Description of the partner"
+						></textarea>
+					</div>
+					<button class="submit-button">Submit</button>
+				</div>
+				<div class="form search-partners-form">
+					<div class="partner-name section">
+						<p>Partner Name</p>
+						<input
+							class="partner-search-input reg-input"
+							placeholder="The company's name"
+						/>
+					</div>
+					<button class="search-button">Search</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="./script.js"></script>
+	</body>
+</html>

@@ -1,103 +1,118 @@
-let toggle = 8.625;
+document.addEventListener("DOMContentLoaded", () => {
+	const addPartnerButton = document.querySelector(".add-partner-button");
+	const searchPartnersButton = document.querySelector(
+		".search-partners-button"
+	);
+	const addPartnerForm = document.querySelector(".add-partner-form");
+	const searchPartnersForm = document.querySelector(".search-partners-form");
+	const submitButton = document.querySelector(".submit-button");
+	const searchButton = document.querySelector(".search-button");
 
-document.querySelector(".download-btn").addEventListener("click", () => {
-	let companyName = document.querySelector(".company-input").value;
-	let clientName = document.querySelector(".name-input").value;
-	let location = document.querySelector(".loc-input").value;
-	let apt = document.querySelector(".apt-input").value;
-	let po = document.querySelector(".po-input").value;
-	let date = document.querySelector(".date-input").value;
-	let invoiceNum = document.querySelector(".invoice-input").value;
+	let partners = [];
+	let activeState = true;
 
-	if (po != "" && po[0] == "#") {
-		po = po.substring(1);
-	}
-	po = po.trim();
+	const fetchPartners = async () => {
+		const response = await fetch("/api/partners");
+		partners = await response.json();
+	};
 
-	if (invoiceNum != "" && invoiceNum[0] == "#") {
-		invoiceNum = invoiceNum.substring(1);
-	}
-	invoiceNum = invoiceNum.trim();
-
-	let bullets = document
-		.querySelector(".bullets-input")
-		.value.trim()
-		.split("\n");
-	let subtotal = document.querySelector(".subtotal-input").value;
-
-	subtotal = subtotal.replace(/[^0-9]/g, "");
-
-	let taxRate = fetch("/generate-invoice", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			company: companyName,
-			name: clientName,
-			loc: location,
-			apt: apt,
-			po: po,
-			date: date,
-			invoiceNum: invoiceNum,
-			bullets: bullets,
-			subtotal: subtotal,
-			taxRate: toggle,
-		}),
-	})
-		.then((response) => {
-			if (response.ok) {
-				// Trigger download
-				response.blob().then((blob) => {
-					const url = window.URL.createObjectURL(blob);
-					const a = document.createElement("a");
-					a.href = url;
-					a.download = "Invoice #" + invoiceNum + ".pdf";
-					document.body.appendChild(a);
-					a.click();
-					window.URL.revokeObjectURL(url);
-				});
-			} else {
-				console.error("Failed to generate invoice");
-			}
-		})
-		.catch((error) => {
-			console.error("Error:", error);
+	const savePartners = async () => {
+		await fetch("/api/partners", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(partners),
 		});
-});
+	};
 
-document.querySelector(".tax-8625").addEventListener("click", () => {
-	if (toggle == 8.875) {
-		chooseFirst();
-		toggle = 8.625;
-	} else if (toggle == 8.625) {
-		chooseSecond();
-		toggle = 8.875;
+	const activeButton = document.querySelector(".activity-container .active");
+	const inactiveButton = document.querySelector(
+		".activity-container .inactive"
+	);
+
+	function setActive() {
+		activeButton.style.backgroundColor = "#cd6767";
+		inactiveButton.style.backgroundColor = "white";
+		activeState = true;
 	}
-});
 
-document.querySelector(".tax-8875").addEventListener("click", () => {
-	if (toggle == 8.875) {
-		chooseFirst();
-		toggle = 8.625;
-	} else if (toggle == 8.625) {
-		chooseSecond();
-		toggle = 8.875;
+	function setInactive() {
+		inactiveButton.style.backgroundColor = "#cd6767";
+		activeButton.style.backgroundColor = "white";
+		activeState = false;
 	}
+
+	activeButton.addEventListener("click", setActive);
+	inactiveButton.addEventListener("click", setInactive);
+
+	addPartnerButton.addEventListener("click", () => {
+		addPartnerForm.style.display = "flex";
+		searchPartnersForm.style.display = "none";
+
+		addPartnerButton.style.backgroundColor = "#749ebf";
+		searchPartnersButton.style.backgroundColor = "#97bad5";
+	});
+
+	searchPartnersButton.addEventListener("click", () => {
+		addPartnerForm.style.display = "none";
+		searchPartnersForm.style.display = "flex";
+
+		searchPartnersButton.style.backgroundColor = "#749ebf";
+		addPartnerButton.style.backgroundColor = "#98bad5";
+	});
+
+	submitButton.addEventListener("click", async () => {
+		const partnerNameInput = document.querySelector(".partner-input");
+		const imageInput = document.querySelector(".files");
+		const descriptionInput = document.querySelector(".desc-input");
+
+		const partnerName = partnerNameInput.value;
+		const image = imageInput.files[0];
+		const description = descriptionInput.value;
+
+		const reader = new FileReader();
+		reader.onloadend = async () => {
+			const logo = reader.result;
+			partners.push(
+				new Partner(partnerName, logo, activeState, description)
+			);
+			await savePartners();
+			partnerNameInput.value = "";
+			imageInput.value = "";
+			descriptionInput.value = "";
+		};
+		if (image) {
+			reader.readAsDataURL(image);
+		} else {
+			const logo = null;
+			partners.push(
+				new Partner(partnerName, logo, activeState, description)
+			);
+			await savePartners();
+			partnerNameInput.value = "";
+			imageInput.value = "";
+			descriptionInput.value = "";
+		}
+	});
+
+	searchButton.addEventListener("click", () => {
+		const partnerName = document.querySelector(
+			".partner-search-input"
+		).value;
+		window.location.href = `search_results.html?partnerName=${encodeURIComponent(
+			partnerName
+		)}`;
+	});
+
+	fetchPartners();
 });
 
-function chooseSecond() {
-	document.querySelector(".tax-8625").style.backgroundColor = "white";
-	document.querySelector(".tax-8625").style.color = "#1496bd";
-
-	document.querySelector(".tax-8875").style.color = "white";
-	document.querySelector(".tax-8875").style.backgroundColor = "#1496bd";
-}
-
-function chooseFirst() {
-	document.querySelector(".tax-8875").style.backgroundColor = "white";
-	document.querySelector(".tax-8875").style.color = "#1496bd";
-
-	document.querySelector(".tax-8625").style.color = "white";
-	document.querySelector(".tax-8625").style.backgroundColor = "#1496bd";
+class Partner {
+	constructor(name, logo, active, description) {
+		this.name = name;
+		this.logo = logo;
+		this.active = active;
+		this.description = description;
+	}
 }
